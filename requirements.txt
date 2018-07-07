@@ -1,0 +1,5 @@
+simplejson
+python-dotenv
+watchdog
+Flask
+pylint
