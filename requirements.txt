@@ -3,3 +3,4 @@ python-dotenv
 watchdog
 Flask
 pylint
+flask-bcrypt
