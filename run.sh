@@ -1,4 +1,6 @@
-export FLASK_ENV=development
-export FLASK_APP=webServer.py
+# load configs
+. .thermal_back_env_default
+. .thermal_back_env
+
 . venv/bin/activate
 flask run
