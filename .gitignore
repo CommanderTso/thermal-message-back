@@ -3,3 +3,4 @@ __pycache__
 .vscode
 *.pyc
 *.sqlite
+.thermal_back_env

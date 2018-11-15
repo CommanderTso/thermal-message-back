@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import sqlite3
 
 db_file = 'thermal_printer_db.sqlite'

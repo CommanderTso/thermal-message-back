@@ -1,4 +1,7 @@
-export FLASK_ENV=development
-export FLASK_APP=thermal-message-back.py
+# load configs
+. .thermal_back_env_default
+. .thermal_back_env
+
 . venv/bin/activate
+
 flask run
