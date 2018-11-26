@@ -4,7 +4,7 @@ from flask import request, url_for, render_template, session
 
 
 @app.route('/', methods=['GET'])
-def index():
+def send_message():
     if False:  # if not valid cookie
         # reroute to login endpoint
         return
@@ -17,4 +17,4 @@ def index():
 def message_post():
     message_to_print = request.form['user_message']
     print(f"form: {message_to_print}")
-    return "Your message has been posted!"
+    return render_template("message-sent.html")
