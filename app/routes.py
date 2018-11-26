@@ -10,7 +10,7 @@ def index():
         return
     else:
         # print(app.load_user(1))
-        return render_template('index.html')
+        return render_template('send-message.html')
 
 
 @app.route('/message', methods=['POST'])
