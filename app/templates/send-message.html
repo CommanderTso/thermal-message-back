@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<form action='/message' method='post'>
-		<div>
-			<label for="msg">Message:</label>
-			<textarea id="msg" name="user_message"></textarea>
-		</div>
-		<div class="button">
-			<button type="submit">Send Message</button>
-		</div>
-	</form>
+    <form action='/message' method='post' novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.message.label }}
+            <br>
+            {{ form.message }}
+        </p>
+        <p>
+            {{ form.submit.label }}
+            <br>
+            {{ form.submit }}
+        </p>
+    </form>
 {% endblock %}
