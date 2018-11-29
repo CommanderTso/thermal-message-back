@@ -5,11 +5,12 @@ for p in sys.path:
     
 from app import app
 from app.user import User
-from flask import request, url_for, render_template, session
-from app.forms import SubmitMessageForm
+from flask import request, url_for, render_template, session, redirect
+from app.forms import SubmitMessageForm, LoginForm
 
 
 @app.route('/', methods=['GET'])
+@app.route('/message', methods=['GET'])
 def send_message():
     if False:  # if not valid cookie
         # reroute to login endpoint
@@ -29,3 +30,20 @@ def message_post():
         return render_template("message-sent.html")
     else:
         return "We had an issue!"
+
+@app.route('/login', methods=['GET'])
+def login_get():
+    form = LoginForm()
+    return render_template('login.html', form=form)
+
+@app.route('/login', methods=['POST'])
+def login_post():
+    form = LoginForm()
+    if form.validate_on_submit():
+        print(f"Login POST - username: {form.username.data}")
+        print(f"Login POST - password: {form.password.data}")
+        return redirect(url_for('login_get'))
+    else:
+        print(f"Errors: {form.errors}")
+        return redirect(url_for('login_get'))
+
