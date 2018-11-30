@@ -15,3 +15,9 @@ def load_user(user_id):
     return User(user_id)
 
 from app import routes
+
+
+@app.context_processor
+def inject_environment():
+    print(app.config['ENV'])
+    return dict(app_environment=app.config['ENV'])
