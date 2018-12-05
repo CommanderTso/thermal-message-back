@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-		{% if app_environment is equalto 'development' %}
-			<link rel="stylesheet" href="{{ url_for('static', filename='css/nes.min.css') }}">
-		{% else %}
-			<link href="https://unpkg.com/nes.css@0.0.2/css/nes.min.css" rel="stylesheet" />
-		{% endif %}
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Thermal Messenger</title>
-	</head>
-	<body>
-		<div id="content">{% block content %}{% endblock %}</div>
-	</body>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    {% if app_environment is equalto 'development' %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/nes.min.css') }}">
+    {% else %}
+      <link href="https://unpkg.com/nes.css@0.0.2/css/nes.min.css" rel="stylesheet" />
+    {% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thermal Messenger</title>
+  </head>
+  <body>
+    {% with message = get_flashed_messages() %}
+      {% if message %}
+        <p class="btn is-error" style="width:90%">{{ message[0] }}</p>
+      {% endif %}
+    {% endwith %}
+    <div id="content">{% block content %}{% endblock %}</div>
+  </body>
 </html>

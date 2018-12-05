@@ -1,12 +1,12 @@
 import sys
-
 for p in sys.path:
     print(p)
-    
+
 from app import app
 from app.user import User
-from flask import request, url_for, render_template, session, redirect
+from flask import request, url_for, render_template, session, redirect, flash
 from app.forms import SubmitMessageForm, LoginForm
+from app.helpers import parse_login_error
 
 
 @app.route('/', methods=['GET'])
@@ -44,6 +44,6 @@ def login_post():
         print(f"Login POST - password: {form.password.data}")
         return redirect(url_for('login_get'))
     else:
-        print(f"Errors: {form.errors}")
+        flash(parse_login_error(form.errors))
         return redirect(url_for('login_get'))
 
