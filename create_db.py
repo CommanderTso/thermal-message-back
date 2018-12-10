@@ -7,7 +7,8 @@ c = conn.cursor()
 
 c.execute('CREATE TABLE IF NOT EXISTS users ( \
 	id INTEGER PRIMARY KEY NOT NULL, \
-	user_name TEXT NOT NULL, \
+	email TEXT NOT NULL, \
+	first_name TEXT NOT NULL, \
 	password TEXT NOT NULL)')
 
 conn.commit()
