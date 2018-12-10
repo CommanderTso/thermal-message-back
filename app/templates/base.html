@@ -12,6 +12,12 @@
     <title>Thermal Messenger</title>
   </head>
   <body>
+    {% if current_user.is_authenticated %}
+      <p>
+        Hi {{ current_user.first_name }}!
+        <a href="{{url_for('logout_get')}}">Log out</a>
+      </p>
+    {% endif %}
     {% with message = get_flashed_messages() %}
       {% if message %}
         <p class="btn is-error" style="width:90%">{{ message[0] }}</p>

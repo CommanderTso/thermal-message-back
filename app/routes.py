@@ -7,7 +7,7 @@ from app.user import User
 from flask import request, url_for, render_template, session, redirect, flash
 from app.forms import SubmitMessageForm, LoginForm
 from app.helpers import parse_login_error
-from flask_login import LoginManager, login_required, login_user
+from flask_login import LoginManager, login_required, login_user, logout_user
 
 login_manager = LoginManager()
 
@@ -59,3 +59,9 @@ def login_post():
         flash(parse_login_error(form.errors))
         return redirect(url_for('login_get'))
 
+@app.route("/logout")
+@login_required
+def logout_get():
+    logout_user()
+    flash("You have been logged out.")
+    return redirect(url_for('login_get'))
