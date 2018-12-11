@@ -47,7 +47,7 @@ def login_post():
         username = form.username.data
         password = form.password.data
 
-        if user is None or user.check_password(username, password) == False:
+        if user is None or user.check_password(password) == False:
             flash('Invalid username or password')
             return redirect(url_for('login_get'))
         login_user(user)
