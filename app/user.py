@@ -39,8 +39,6 @@ class User(UserMixin):
         c = conn.cursor()
 
         new_hash = generate_password_hash(password).decode('UTF-8')
-        print(f'new hash: {new_hash}')
-        print(f'id: {self.id}')
         query = "UPDATE users SET password = $1 WHERE id = $2"
         params = (new_hash, self.id)
         
@@ -60,8 +58,5 @@ class User(UserMixin):
         result = c.fetchone()
         pw_hash = result[0]
 
-        print(f'password from db: "{result[0]}" from user id {self.id}')
-        print(f'check_password_hash: {check_password_hash(pw_hash, password)}')
-        
         return check_password_hash(pw_hash, password)
 

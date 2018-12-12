@@ -1,7 +1,3 @@
-import sys
-for p in sys.path:
-    print(p)
-
 from app import app
 from app.user import User
 from flask import request, url_for, render_template, session, redirect, flash
@@ -29,7 +25,7 @@ def message_post():
     form = SubmitMessageForm()
     if form.validate_on_submit():
         message_to_print = form.message.data
-        print(f"form: {message_to_print}")
+        print(f"Message to print from form: {message_to_print}")
         return render_template("message-sent.html")
     else:
         return "We had an issue!"
