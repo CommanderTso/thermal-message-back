@@ -1,10 +1,11 @@
+from app.config import Config
 from flask_login import UserMixin
-import sqlite3, os
+import sqlite3
 from flask_bcrypt import generate_password_hash, check_password_hash
 
 class User(UserMixin):
     def __new__(cls, email=None, id=None):
-        conn = sqlite3.connect(os.environ['TPB_DB'])
+        conn = sqlite3.connect(Config.DB)
         c = conn.cursor()
         
         result = None
@@ -35,7 +36,7 @@ class User(UserMixin):
             return instance
 
     def set_password(self, password):
-        conn = sqlite3.connect(os.environ['TPB_DB'])
+        conn = sqlite3.connect(Config.DB)
         c = conn.cursor()
 
         new_hash = generate_password_hash(password).decode('UTF-8')
@@ -49,7 +50,7 @@ class User(UserMixin):
 
 
     def check_password(self, password):
-        conn = sqlite3.connect(os.environ['TPB_DB'])
+        conn = sqlite3.connect(Config.DB)
         c = conn.cursor()
 
         query = "SELECT password from users WHERE id = $1"

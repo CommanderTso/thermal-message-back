@@ -11,6 +11,7 @@ login_manager = LoginManager()
 @app.route('/message', methods=['GET'])
 @login_required
 def message_get():
+    print(f'APP.CONFIG:  {app.config}')
     if False:  # if not valid cookie
         # reroute to login endpoint
         return url_for(login_get)
