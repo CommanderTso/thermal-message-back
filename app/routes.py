@@ -4,8 +4,13 @@ from flask import request, url_for, render_template, session, redirect, flash
 from app.forms import SubmitMessageForm, LoginForm
 from app.helpers import parse_login_error
 from flask_login import LoginManager, login_required, login_user, logout_user
+from app.Adafruit_Thermal import Adafruit_Thermal
 
 login_manager = LoginManager()
+# TEST CONFIG
+# printer = Adafruit_Thermal()
+# REAL CONFIG
+printer = Adafruit_Thermal("/dev/serial0", 19200, timeout=5)
 
 @app.route('/', methods=['GET'])
 @app.route('/message', methods=['GET'])
@@ -26,7 +31,15 @@ def message_post():
     form = SubmitMessageForm()
     if form.validate_on_submit():
         message_to_print = form.message.data
-        print(f"Message to print from form: {message_to_print}")
+        # print(f"Message to print from form: {message_to_print}")
+        print("------BEGIN MESSAGE--------\n")
+        printer.justify('C')
+        printer.setSize('M')   # Set type size, accepts 'S', 'M', 'L'
+        printer.println('HELLO FAMILY!!  Home soon!')
+        printer.setDefault()
+        # printer.sleep()
+        printer.feed(4)
+        print("\n-------END MESSAGE--------")
         return render_template("message-sent.html")
     else:
         return "We had an issue!"

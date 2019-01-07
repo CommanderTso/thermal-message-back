@@ -7,3 +7,4 @@ flask-login
 Flask-WTF
 python-dotenv
 gunicorn
+pyserial
