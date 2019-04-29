@@ -7,10 +7,11 @@ from flask_login import LoginManager, login_required, login_user, logout_user
 from app.Adafruit_Thermal import Adafruit_Thermal
 
 login_manager = LoginManager()
-# TEST CONFIG
-# printer = Adafruit_Thermal()
-# REAL CONFIG
-printer = Adafruit_Thermal("/dev/serial0", 19200, timeout=5)
+if (app.config['ENV'] == 'production'):
+    printer = Adafruit_Thermal("/dev/serial0", 19200, timeout=5)
+else:
+    print("dev env detected")
+    printer = Adafruit_Thermal()
 
 @app.route('/', methods=['GET'])
 @app.route('/message', methods=['GET'])
@@ -31,11 +32,10 @@ def message_post():
     form = SubmitMessageForm()
     if form.validate_on_submit():
         message_to_print = form.message.data
-        # print(f"Message to print from form: {message_to_print}")
         print("------BEGIN MESSAGE--------\n")
         printer.justify('C')
         printer.setSize('M')   # Set type size, accepts 'S', 'M', 'L'
-        printer.println('HELLO FAMILY!!  Home soon!')
+        printer.println(message_to_print)
         printer.setDefault()
         # printer.sleep()
         printer.feed(4)
