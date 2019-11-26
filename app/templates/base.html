@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link href="https://unpkg.com/nes.css@2.1.1/css/nes.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    <style>
-      html, body, pre, code, kbd, samp {
-          font-family: "Press Start 2P";
-      }
-    </style>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thermal Messenger</title>
-  </head>
-  <body>
-    {% if current_user.is_authenticated %}
-      <p>
-        Hi {{ current_user.first_name }}!
-        <a href="{{url_for('logout_get')}}">Log out</a>
-      </p>
-    {% endif %}
-    {% with message = get_flashed_messages() %}
-      {% if message %}
-        <p class="btn is-error" style="width:90%">{{ message[0] }}</p>
-      {% endif %}
-    {% endwith %}
-    <div id="content">{% block content %}{% endblock %}</div>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link href="https://unpkg.com/nes.css@2.1.1/css/nes.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <style>
+    html,
+    body,
+    pre,
+    code,
+    kbd,
+    samp {
+      font-family: "Press Start 2P";
+    }
+  </style>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thermal Messenger</title>
+</head>
+
+<body>
+  {% if current_user.is_authenticated %}
+  <p>
+    Hi {{ current_user.first_name }}!
+    <a href="{{url_for('logout_get')}}">Log out</a>
+  </p>
+  {% endif %}
+  {% with message = get_flashed_messages() %}
+  {% if message %}
+  <p class="btn is-error" style="width:90%">{{ message[0] }}</p>
+  {% endif %}
+  {% endwith %}
+  <div id="content">{% block content %}{% endblock %}</div>
+</body>
+
 </html>
