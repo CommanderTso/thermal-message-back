@@ -1,17 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Please Log In</h1>
-    <form action='/login' method='post' novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}: {{ form.username }}
-            <br>
-            {{ form.password.label }}: {{ form.password }}
-        </p>
-        <p>
-            {{ form.submit(class_="btn is-success") }}
-        </p>
-    </form>
+<form action='/login' method='post' novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.username.label }}: {{ form.username }}
+        <br>
+        {{ form.password.label }}: {{ form.password }}
+    </p>
+    <p>
+        {{ form.submit(class_="btn is-success") }}
+    </p>
+</form>
 
 {% endblock %}
