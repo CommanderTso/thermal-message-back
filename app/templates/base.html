@@ -18,19 +18,23 @@
   </style>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thermal Messenger</title>
+  <title>Fruity Printer</title>
 </head>
 
 <body>
-  <img alt="An image of a printer" width="100px" src="static/to_print.svg" />
+  <h1 style="margin-bottom: 2em">
+    <img alt="A printer" width="100px" src="static/images/to_print.svg" />
+    <img alt="A cherry" width="100px" src="static/images/cherries.svg" />
+    Fruity Printer!
+    <img alt="Another cherry" width="100px" src="static/images/cherries.svg" />
+    <img alt="Another printer" width="100px" src="static/images/to_print.svg" />
+  </h1>
   <div>
     {% if current_user.is_authenticated %}
     <p>
       Hi {{ current_user.first_name }}!
       <a href="{{url_for('logout_get')}}">Log out</a>
     </p>
-    {% else %}
-    <h2>Please Log In</h2>
     {% endif %}
     {% with message = get_flashed_messages() %}
     {% if message %}
