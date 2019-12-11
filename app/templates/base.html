@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-  <link href="https://unpkg.com/nes.css@2.2.1/css/nes.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link href="static/css/nes.min.css" rel="stylesheet" />
+  <link href="static/css/styles.css" rel="stylesheet">
   <style>
     html,
     body,
@@ -22,18 +22,28 @@
 </head>
 
 <body>
-  {% if current_user.is_authenticated %}
-  <p>
-    Hi {{ current_user.first_name }}!
-    <a href="{{url_for('logout_get')}}">Log out</a>
-  </p>
-  {% endif %}
-  {% with message = get_flashed_messages() %}
-  {% if message %}
-  <p class="btn is-error" style="width:90%">{{ message[0] }}</p>
-  {% endif %}
-  {% endwith %}
-  <div id="content">{% block content %}{% endblock %}</div>
+  <img alt="An image of a printer" width="100px" src="static/to_print.svg" />
+  <div>
+    {% if current_user.is_authenticated %}
+    <p>
+      Hi {{ current_user.first_name }}!
+      <a href="{{url_for('logout_get')}}">Log out</a>
+    </p>
+    {% else %}
+    <h2>Please Log In</h2>
+    {% endif %}
+    {% with message = get_flashed_messages() %}
+    {% if message %}
+    <div>
+      <button type="button" onclick="this.parentElement.style.display='none';" class="nes-btn
+      is-primary">{{ message[0] }}</button>
+    </div>
+    {% endif %}
+    {% endwith %}
+  </div>
+  <div id="content">
+    {% block content %}{% endblock %}
+  </div>
 </body>
 
 </html>
