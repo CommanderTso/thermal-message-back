@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <section class="form container with-title">
-        <h2 class="title">Send Message</h2>
-        <form action='/message' method='post' novalidate>
-            {{ form.hidden_tag() }}
-            <p class="field">
-                {{ form.message(class_="input")}}
-            </p>
-            {{ form.submit }}
-        </form>
-    </section>
+<section class="form container with-title">
+    <h2 class="title">Send Message</h2>
+    <form action='/message' method='post' novalidate>
+        {{ form.hidden_tag() }}
+        <p class="field">
+            {{ form.message(class_="input message-submit")}}
+        </p>
+        {{ form.submit }}
+    </form>
+</section>
 {% endblock %}

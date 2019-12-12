@@ -22,34 +22,32 @@
 </head>
 
 <body>
-  <div class="nescss">
-    <div class="container" style="padding: 2rem; margin: 2rem">
-      <h1 style="margin-bottom: 2em; text-align: center">
-        <img alt="A printer" width="100px" src="static/images/to_print.svg" />
-        <img alt="A cherry" width="100px" src="static/images/cherries.svg" />
-        Fruity Printer!
-        <img alt="Another cherry" width="100px" src="static/images/cherries.svg" />
-        <img alt="Another printer" width="100px" src="static/images/to_print.svg" />
-      </h1>
-      <div>
-        {% if current_user.is_authenticated %}
-        <p>
-          Hi {{ current_user.first_name }}!
-          <a href="{{url_for('logout_get')}}">Log out</a>
-        </p>
-        {% endif %}
-        {% with message = get_flashed_messages() %}
-        {% if message %}
-        <div>
-          <button type="button" onclick="this.parentElement.style.display='none';" class="nes-btn
+  <div class="container">
+    <h1>
+      <img alt="A printer" width="100px" src="static/images/to_print.svg" />
+      <img alt="A cherry" width="100px" src="static/images/cherries.svg" />
+      Fruity Printer!
+      <img alt="Another cherry" width="100px" src="static/images/cherries.svg" />
+      <img alt="Another printer" width="100px" src="static/images/to_print.svg" />
+    </h1>
+    <div>
+      {% if current_user.is_authenticated %}
+      <p>
+        Hi {{ current_user.first_name }}!
+        <a href="{{url_for('logout_get')}}">Log out</a>
+      </p>
+      {% endif %}
+      {% with message = get_flashed_messages() %}
+      {% if message %}
+      <div class="button-div">
+        <button type="button" onclick="this.parentElement.style.display='none';" class="nes-btn
       is-primary">{{ message[0] }}</button>
-        </div>
-        {% endif %}
-        {% endwith %}
       </div>
-      <div id="content">
-        {% block content %}{% endblock %}
-      </div>
+      {% endif %}
+      {% endwith %}
+    </div>
+    <div id="content">
+      {% block content %}{% endblock %}
     </div>
   </div>
 </body>
