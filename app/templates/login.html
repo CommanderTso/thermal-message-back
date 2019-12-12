@@ -1,16 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action='/login' method='post' novalidate>
-    {{ form.hidden_tag() }}
-    <p>
-        {{ form.username.label }}: {{ form.username }}
-        <br>
-        {{ form.password.label }}: {{ form.password }}
-    </p>
-    <p>
-        {{ form.submit(class_="btn is-success") }}
-    </p>
-</form>
+<div class="nes-container with-title is-centered" style="width: 30em; margin-left: auto; margin-right: auto">
+    <p class=" title">User Login</p>
+    <form action='/login' method='post' novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}: {{ form.username }}
+            <br>
+            {{ form.password.label }}: {{ form.password }}
+        </p>
+        <p>
+            {{ form.submit(class_="btn is-success") }}
+        </p>
+    </form>
+</div>
 
 {% endblock %}
