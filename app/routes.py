@@ -54,17 +54,13 @@ def login_post():
     form = LoginForm()
     if form.validate_on_submit():
         user = User(form.username.data)
-        username = form.username.data
         password = form.password.data
 
         if user is None or user.check_password(password) == False:
             flash('Invalid username or password')
             return redirect(url_for('login_get'))
         login_user(user)
-        next_page = request.args.get('next')
-        if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('message_get')
-        return redirect(next_page)
+        return redirect(url_for('message_get'))
     else:
         flash(parse_login_error(form.errors))
         return redirect(url_for('login_get'))
