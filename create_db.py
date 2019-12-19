@@ -1,3 +1,5 @@
+#!./venv/bin/python
+
 import sqlite3
 
 db_file = 'thermal_printer_db.sqlite'
